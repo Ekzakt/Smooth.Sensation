@@ -1,0 +1,37 @@
+﻿@page "/weather"
+@page "/weather/{R:int}"
+
+@using Smooth.Shared.Models;
+@using Smooth.Shared.Models.Requests
+
+<PageHeader Title="Weatherforecasts"></PageHeader>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label" for="n">Number of rows:</label>
+        <input type="text" class="form-control" id="n" @bind-value=R />
+    </div>
+    <button type="button" class="btn btn-primary" @onclick="GetWeartherForecasts">Load weatherforecasts</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var forecast in weatherForecastsList ??= new List<WeatherForecastDto>())
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+    </tbody>
+</table>

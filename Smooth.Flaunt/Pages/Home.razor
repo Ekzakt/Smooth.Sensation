@@ -1,0 +1,58 @@
+﻿@page "/"
+
+<PageHeader title="Home"></PageHeader>
+
+<div class="mb-4">
+    <h4>Weather links with rowcount:</h4>
+    <ul>
+        <li><a href="weather/1">Weather 1</a></li>
+        <li><a href="weather/2">Weather 2</a></li>
+        <li><a href="weather/3">Weather 3</a></li>
+        <li><a href="weather/4">Weather 4</a></li>
+        <li><a href="weather/5">Weather 5</a></li>
+        <li><a href="weather/10">Weather 10</a></li>
+        <li><a href="weather/15">Weather 15</a></li>
+        <li><a href="weather/20">Weather 20</a></li>
+        <li><a href="weather/35">Weather 35</a></li>
+        <li><a href="weather/50">Weather 50</a></li>
+        <li><a href="weather/100">Weather 100</a></li>
+        <li><a href="weather/500">Weather 500</a></li>
+        <li><a href="weather/750">Weather 750</a></li>
+    </ul>
+</div>
+
+<Article Title="TestClass POST Method:" Value="@_insertTestClassResult">
+    <div class="mb-2">
+        <button type="button" class="btn btn-primary" @onclick="InsertTestClassAsync">Insert TestClass</button>
+    </div>
+</Article>
+
+<Article Title="Send Email Result:" Value="@_triggerEmailResult">
+    <div class="mb-2">
+        <button type="button" class="btn btn-primary" @onclick="TriggerSendEmailAsync">Send Email</button>
+    </div>
+</Article>
+
+<Article Title="Api Versions:" Value="@_apiVersionsResult"></Article>
+<Article Title="Web Versions:" Value="@_webVersionsResult"></Article>
+<Article Title="Ekzakt FileManager Options:" Value="@_optionsResult.FileManagerOptionsResult"></Article>
+<Article Title="MediaFiles Options:" Value="@_optionsResult.MediaFilesOptionsResult"></Article>
+<Article Title="Image Options:" Value="@_optionsResult.ImageOptionsResult"></Article>
+<Article Title="Video Options:" Value="@_optionsResult.VideoOptionsResult"></Article>
+<Article Title="Sound Options:" Value="@_optionsResult.SoundOptionsResult"></Article>
+<Article Title="Azure Options:" Value="@_optionsResult.AzureOptionsResult"></Article>
+<Article Title="Cors Options:" Value="@_optionsResult.CorsOptionsResult"></Article>
+
+<Article Title="Environment Variables">
+    <ul>
+    @foreach(var environmentVariable in _environmentVariables)
+    {
+        <li>@environmentVariable.ToString()</li>
+    }
+    </ul>
+</Article>
+
+    
+
+
+

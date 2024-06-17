@@ -1,0 +1,101 @@
+﻿@page "/filemanager"
+
+@using Microsoft.AspNetCore.Components.Forms
+@using Smooth.Shared.Models
+@using Smooth.Flaunt.Components
+@using Smooth.Flaunt.Components.Article
+@using Smooth.Flaunt.Layout
+@using Ekzakt.Utilities.Extensions
+
+<PageHeader Title="Filemanager"></PageHeader>
+
+<Article Title="Upload Files" Value="@saveFilesResult">
+    <div class="d-flex dropzone rounded-3 mb-3">
+        <InputFile OnChange="SaveFilesAsync" multiple />
+    </div>
+    <div class="mb-3">
+        <SmoothProgressLinear PercentageDone="@percentageDone"></SmoothProgressLinear>
+    </div>
+    <div>
+        <SmoothButton Class="btn btn-primary" Caption="Get fileslist" OnButtonClickCallback="ListFilesAsync"></SmoothButton>
+        <button type="button" class="btn btn-primary @(cancelDisabled ? "disabled" : string.Empty)" @onclick="CancelSaveFile">Cancel upload</button>
+    </div>
+</Article>
+
+
+<Article Title=@($"Files ({@filesList?.Count ?? 0})")>
+
+    <div class="mb-2">
+        <button type="button" class="btn btn-primary" @onclick="ListFilesAsync">Get fileslist</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Uploaded</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                filesList ??= new List<FileInformationDto>();
+
+                if (filesList.Count == 0)
+                {
+                    <tr colspan="4">No files found.</tr>
+                }
+                else
+                {
+                    foreach (var file in filesList)
+                    {
+                        <tr>
+                            <td>@file.Name</td>
+                            <td>@file.Size.FormatFileSize(2)</td>
+                            <td>@file.CreatedOn?.TimeAgo()</td>
+                            <td><button type="button" class="btn btn-outline-danger" @onclick="() => DeleteFileAsync(file.Name)">Delete</button></td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+</Article>
+
+
+<style>
+    .inputlabel {
+        color: gray;
+    }
+
+    .dropzone {
+        background-color: red;
+        border: 1px dashed steelblue;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+        color: #444;
+        position: relative;
+        cursor: pointer;
+    }
+        .dropzone:hover {
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        .dropzone input[type=file] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    .dropzone-drag {
+        background-color: palegreen;
+    }
+</style>

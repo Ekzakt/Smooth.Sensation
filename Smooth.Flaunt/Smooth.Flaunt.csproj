@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>c6080cc3-20b5-40d8-81c4-cfe91269a293</UserSecretsId>
+		<Version>0.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<_ContentIncludedByDefault Remove="staticwebapp.config.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.18" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.18" />
+		<PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="7.0.18" />
+		<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.18" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Smooth.Flaunt.Application\Smooth.Flaunt.Application.csproj" />
+		<ProjectReference Include="..\Smooth.Flaunt.Components\Smooth.Flaunt.Components.csproj" />
+	</ItemGroup>
+
+</Project>
