@@ -14,16 +14,25 @@ public static class WebApplicationExtensions
 
 
     public static WebApplication UseSwaggerGen(this WebApplication application) 
-    { 
-        if (!application.Environment.IsProduction())
+    {
+        // TODO: Fix this for production.
+
+        //if (!application.Environment.IsProduction())
+        //{
+        //    application.UseSwagger();
+        //    application.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
+        //    {
+        //        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        //        options.RoutePrefix = string.Empty;
+        //    });
+        //}
+
+        application.UseSwagger();
+        application.UseSwaggerUI(options =>
         {
-            application.UseSwagger();
-            application.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                options.RoutePrefix = string.Empty;
-            });
-        }
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            options.RoutePrefix = string.Empty;
+        });
 
         return application;
     }
