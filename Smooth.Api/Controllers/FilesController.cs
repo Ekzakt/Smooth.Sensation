@@ -66,7 +66,7 @@ public class FilesController(
 
     [HttpPost]
     [Route(Routes.POST_FILE)]
-    public async Task<IActionResult> SaveFileAsync([FromForm] IFormFile file, Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> SaveFileAsync(IFormFile file, Guid id, CancellationToken cancellationToken)
     {
         var fileGuid = Guid.NewGuid();
 
